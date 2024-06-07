@@ -1,13 +1,12 @@
-import { DOCS_URL, BLOG_URL } from '../../shared/constants';
+import { DOCS_URL} from '../../shared/constants';
 import daBoiAvatar from '../static/da-boi.png';
 import avatarPlaceholder from '../static/avatar-placeholder.png';
 import { routes } from 'wasp/client/router';
 
 export const navigation = [
   { name: 'Features', href: '#features' },
-  { name: 'Pricing', href: routes.PricingPageRoute.build() },
-  { name: 'Documentation', href: DOCS_URL },
-  { name: 'Blog', href: BLOG_URL },
+  { name: 'About', href: '#about' },
+  { name: 'Pricing', href: '/pricing' },
 ];
 export const features = [
   {
@@ -70,7 +69,6 @@ export const faqs = [
 export const footerNavigation = {
   app: [
     { name: 'Documentation', href: DOCS_URL },
-    { name: 'Blog', href: BLOG_URL },
   ],
   company: [
     { name: 'About', href: 'https://wasp-lang.dev' },

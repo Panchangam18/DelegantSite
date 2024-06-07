@@ -22,7 +22,7 @@ export default function DemoAppPage() {
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-4xl text-center'>
           <h2 className='mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white'>
-            <span className='text-yellow-500'>AI</span> Day Scheduler
+            <span className='text-teal-500'>AI</span> Day Scheduler
           </h2>
         </div>
         <p className='mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600 dark:text-white'>
@@ -156,7 +156,7 @@ function NewTaskForm({ handleCreateTask }: { handleCreateTask: typeof createTask
           <button
             type='button'
             onClick={handleSubmit}
-            className='min-w-[7rem] font-medium text-gray-800/90 bg-yellow-50 shadow-md ring-1 ring-inset ring-slate-200 py-2 px-4 rounded-md hover:bg-yellow-100 duration-200 ease-in-out focus:outline-none focus:shadow-none hover:shadow-none'
+            className='min-w-[7rem] font-medium text-gray-800/90 bg-teal-50 shadow-md ring-1 ring-inset ring-slate-200 py-2 px-4 rounded-md hover:bg-teal-100 duration-200 ease-in-out focus:outline-none focus:shadow-none hover:shadow-none'
           >
             Add Task
           </button>
@@ -181,7 +181,7 @@ function NewTaskForm({ handleCreateTask }: { handleCreateTask: typeof createTask
                   step={0.5}
                   min={1}
                   max={24}
-                  className='min-w-[7rem] text-gray-800/90 text-center font-medium rounded-md border border-gray-200 bg-yellow-50 hover:bg-yellow-100 shadow-md focus:outline-none focus:border-transparent focus:shadow-none duration-200 ease-in-out hover:shadow-none'
+                  className='min-w-[7rem] text-gray-800/90 text-center font-medium rounded-md border border-gray-200 bg-teal-50 hover:bg-teal-100 shadow-md focus:outline-none focus:border-transparent focus:shadow-none duration-200 ease-in-out hover:shadow-none'
                   value={todaysHours}
                   onChange={(e) => setTodaysHours(e.currentTarget.value)}
                 />
@@ -197,7 +197,7 @@ function NewTaskForm({ handleCreateTask }: { handleCreateTask: typeof createTask
         type='button'
         disabled={isPlanGenerating || tasks?.length === 0}
         onClick={() => handleGeneratePlan()}
-        className='flex items-center justify-center min-w-[7rem] font-medium text-gray-800/90 bg-yellow-50 shadow-md ring-1 ring-inset ring-slate-200 py-2 px-4 rounded-md hover:bg-yellow-100 duration-200 ease-in-out focus:outline-none focus:shadow-none hover:shadow-none disabled:opacity-70 disabled:cursor-not-allowed'
+        className='flex items-center justify-center min-w-[7rem] font-medium text-gray-800/90 bg-teal-50 shadow-md ring-1 ring-inset ring-slate-200 py-2 px-4 rounded-md hover:bg-teal-100 duration-200 ease-in-out focus:outline-none focus:shadow-none hover:shadow-none disabled:opacity-70 disabled:cursor-not-allowed'
       >
         {isPlanGenerating ? (
           <>
@@ -330,7 +330,7 @@ function MainTaskTable({ mainTask, subtasks }: { mainTask: MainTask; subtasks: S
               {
                 'bg-red-100': mainTask.priority === 'high',
                 'bg-green-100': mainTask.priority === 'low',
-                'bg-yellow-100': mainTask.priority === 'medium',
+                'bg-teal-100': mainTask.priority === 'medium',
               }
             )}
           >
@@ -351,7 +351,7 @@ function MainTaskTable({ mainTask, subtasks }: { mainTask: MainTask; subtasks: S
                       {
                         'bg-red-50': mainTask.priority === 'high',
                         'bg-green-50': mainTask.priority === 'low',
-                        'bg-yellow-50': mainTask.priority === 'medium',
+                        'bg-teal-50': mainTask.priority === 'medium',
                       }
                     )}
                   >

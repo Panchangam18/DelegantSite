@@ -12,6 +12,9 @@ import DropdownUser from '../components/DropdownUser';
 import { DOCS_URL } from '../../shared/constants';
 import { UserMenuItems } from '../components/UserMenuItems';
 import DarkModeSwitcher from '../admin/components/DarkModeSwitcher';
+import { motion } from 'framer-motion';
+import styles from './styles/index';
+import { slideIn, fadeIn, staggerContainer, textVariant } from './utils/motion';
 
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -103,7 +106,7 @@ export default function LandingPage() {
                 <div className='py-6'>
                   {isUserLoading ? null : !user ? (
                     <Link to='/login'>
-                      <div className='flex justify-start items-center duration-300 ease-in-out text-gray-900 hover:text-yellow-500 dark:text-white'>
+                      <div className='flex justify-start items-center duration-300 ease-in-out text-gray-900 hover:text-teal-500 dark:text-white'>
                         Log in <BiLogIn size='1.1rem' className='ml-1' />
                       </div>
                     </Link>
@@ -177,9 +180,41 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
+        
+        {/* About section */}
+        <div id="about">
+                <section className={`${styles.paddings} relative z-10`}>
+                    <div className="gradient-02 z-0 max-w-2xl" />
+                    <motion.div
+                    variants={staggerContainer(0.1, 0.2)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.25 }}
+                    className={`${styles.innerWidth} mx-auto ${styles.flexCenter} flex-col`}
+                    >
+                    <h2 className={`mt-2 text-4xl text-center font-extrabold text-color3`}>
+                      About <span className='text-teal-500'>Delegant</span>
+                    </h2>
+
+                    <motion.p
+                        variants={fadeIn('up', 'tween', 0.2, 1)}
+                        className="mt-[50px] font-normal sm:text-[32px] text-[20px] text-center text-secondary-white"
+                    >
+                        At <span className="font-extrabold text-teal-500">Lexal</span> we provide you with the tools
+                        to automate all the tedious aspects of your business, so you can focus on providing your{' '}
+                        <span className="font-extrabold text-teal-500">
+                        core service
+                        </span>. We develop advanced AI tools that can do anything from running your social media 
+                        to tracking your numbers to tell you exactly how to increase your product sales. Scroll down 
+                        to see exactly how we can help your business thrive.
+                    </motion.p>
+
+                    </motion.div>
+                </section>
+          </div>
 
         {/* Clients section */}
-        <div className='mt-12 mx-auto max-w-7xl px-6 lg:px-8 flex flex-col items-between gap-y-6'>
+        {/* <div className='mt-12 mx-auto max-w-7xl px-6 lg:px-8 flex flex-col items-between gap-y-6'>
           <h2 className='mb-6 text-center font-semibold tracking-wide text-gray-500 dark:text-white'>
             Built with / Used by:
           </h2>
@@ -243,25 +278,25 @@ export default function LandingPage() {
               </svg>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Feature section */}
-        <div id='features' className='mx-auto mt-48 max-w-7xl px-6 lg:px-8'>
+        <div id='features' className='mx-auto mt-22 max-w-7xl px-6 lg:px-8'>
           <div className='mx-auto max-w-2xl text-center'>
             <p className='mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white'>
-              The <span className='text-yellow-500'>Best</span> Features
+              <span className='text-teal-500'>Elegant</span> Benefits
             </p>
-            <p className='mt-6 text-lg leading-8 text-gray-600 dark:text-white'>
+            {/* <p className='mt-6 text-lg leading-8 text-gray-600 dark:text-white'>
               Don't work harder.
               <br /> Work smarter.
-            </p>
+            </p> */}
           </div>
           <div className='mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl'>
             <dl className='grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16'>
               {features.map((feature) => (
                 <div key={feature.name} className='relative pl-16'>
                   <dt className='text-base font-semibold leading-7 text-gray-900 dark:text-white'>
-                    <div className='absolute left-0 top-0 flex h-10 w-10 items-center justify-center border border-yellow-400 bg-yellow-100/50 dark:bg-boxdark rounded-lg'>
+                    <div className='absolute left-0 top-0 flex h-10 w-10 items-center justify-center border border-teal-400 bg-teal-100/50 dark:bg-boxdark rounded-lg'>
                       <div className='text-2xl'>{feature.icon}</div>
                     </div>
                     {feature.name}
@@ -274,8 +309,8 @@ export default function LandingPage() {
         </div>
 
         {/* Testimonial section */}
-        <div className='mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8'>
-          <div className='relative sm:left-5 -m-2 rounded-xl bg-yellow-400/20 lg:ring-1 lg:ring-yellow-500/50 lg:-m-4 '>
+        {/* <div className='mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8'>
+          <div className='relative sm:left-5 -m-2 rounded-xl bg-teal-400/20 lg:ring-1 lg:ring-teal-500/50 lg:-m-4 '>
             <div className='relative sm:top-5 sm:right-5 bg-gray-900 dark:bg-boxdark px-8 py-20 shadow-xl sm:rounded-xl sm:px-10 sm:py-16 md:px-12 lg:px-20'>
               <h2 className='text-left text-xl font-semibold tracking-wide leading-7 text-gray-500 dark:text-white'>
                 What Our Users Say
@@ -300,10 +335,10 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* FAQ */}
-        <div className='mt-32 mx-auto max-w-2xl divide-y divide-gray-900/10 dark:divide-gray-200/10 px-6 pb-8 sm:pb-24 sm:pt-12 lg:max-w-7xl lg:px-8 lg:py-32'>
+        {/* <div className='mt-32 mx-auto max-w-2xl divide-y divide-gray-900/10 dark:divide-gray-200/10 px-6 pb-8 sm:pb-24 sm:pt-12 lg:max-w-7xl lg:px-8 lg:py-32'>
           <h2 className='text-2xl font-bold leading-10 tracking-tight text-gray-900 dark:text-white'>
             Frequently asked questions
           </h2>
@@ -316,7 +351,7 @@ export default function LandingPage() {
                 <dd className='flex items-center justify-start gap-2 mt-4 lg:col-span-7 lg:mt-0'>
                   <p className='text-base leading-7 text-gray-600 dark:text-white'>{faq.answer}</p>
                   {faq.href && (
-                    <a href={faq.href} className='text-base leading-7 text-yellow-500 hover:text-yellow-600'>
+                    <a href={faq.href} className='text-base leading-7 text-teal-500 hover:text-teal-600'>
                       Learn more →
                     </a>
                   )}
@@ -324,11 +359,71 @@ export default function LandingPage() {
               </div>
             ))}
           </dl>
-        </div>
-      </main>
+        </div>*/}
+      </main> 
 
       {/* Footer */}
-      <div className='mx-auto mt-6 max-w-7xl px-6 lg:px-8 dark:bg-boxdark-2'>
+      <section
+      aria-labelledby='footer-heading'
+      className='relative border-t border-gray-900/10 dark:border-gray-200/10 py-24 sm:mt-32'>
+                <div className="w-full bg-color5">
+                  <div className="mt -10 container flex flex-col mx-auto">
+                    <div className="flex flex-col items-center w-full my-20 ">
+
+                        <div className="flex flex-col items-center gap-6 mb-8">
+                        <div className="flex flex-wrap items-center justify-center gap-5 lg:gap-12 gap-y-3 lg:flex-nowrap text-color5">
+                            <a href="/#about" className="text-color4 hover:text-teal-500">
+                            About
+                            </a>
+                            <a href="/#features" className="text-color4 hover:text-teal-500">
+                            Features
+                            </a>
+                            <Link to="/" className="text-color4 hover:text-teal-500">
+                            Terms
+                            </Link>
+                            <Link to="/" className="text-color4 hover:text-teal-500">
+                            Privacy Policy
+                            </Link>
+                        </div>
+                        <div className="flex items-center gap-6">
+                    <a href="https://twitter.com/ailexal" className="text-color4 hover:text-teal-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M21.8182 6.14597C21.1356 6.44842 20.4032 6.65355 19.6337 6.74512C20.4194 6.27461 21.0208 5.5283 21.3059 4.64176C20.5689 5.07748 19.7553 5.39388 18.8885 5.56539C18.1943 4.82488 17.207 4.36364 16.1118 4.36364C14.0108 4.36364 12.3072 6.06718 12.3072 8.16706C12.3072 8.46488 12.3408 8.75576 12.4058 9.03391C9.24436 8.87512 6.44106 7.36048 4.56485 5.05894C4.23688 5.61985 4.0503 6.27342 4.0503 6.97109C4.0503 8.29106 4.72246 9.45573 5.74227 10.1371C5.11879 10.1163 4.53239 9.94476 4.01903 9.65967V9.70718C4.01903 11.5498 5.33088 13.0876 7.07033 13.4376C6.75164 13.5234 6.41558 13.5709 6.06791 13.5709C5.82224 13.5709 5.58467 13.5465 5.35173 13.5002C5.83612 15.0125 7.2407 16.1123 8.90485 16.1424C7.60343 17.1622 5.96246 17.7683 4.18012 17.7683C3.87303 17.7683 3.57055 17.7498 3.27273 17.7162C4.95658 18.7974 6.95564 19.4278 9.10418 19.4278C16.1026 19.4278 19.9281 13.6312 19.9281 8.60397L19.9153 8.11145C20.6628 7.57833 21.3094 6.90851 21.8182 6.14597Z" fill="currentColor" />
+                        <mask id="mask0_3320_6484" maskUnits="userSpaceOnUse" x="3" y="4" width="19" height="16">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M21.8182 6.14597C21.1356 6.44842 20.4032 6.65355 19.6337 6.74512C20.4194 6.27461 21.0208 5.5283 21.3059 4.64176C20.5689 5.07748 19.7553 5.39388 18.8885 5.56539C18.1943 4.82488 17.207 4.36364 16.1118 4.36364C14.0108 4.36364 12.3072 6.06718 12.3072 8.16706C12.3072 8.46488 12.3408 8.75576 12.4058 9.03391C9.24436 8.87512 6.44106 7.36048 4.56485 5.05894C4.23688 5.61985 4.0503 6.27342 4.0503 6.97109C4.0503 8.29106 4.72246 9.45573 5.74227 10.1371C5.11879 10.1163 4.53239 9.94476 4.01903 9.65967V9.70718C4.01903 11.5498 5.33088 13.0876 7.07033 13.4376C6.75164 13.5234 6.41558 13.5709 6.06791 13.5709C5.82224 13.5709 5.58467 13.5465 5.35173 13.5002C5.83612 15.0125 7.2407 16.1123 8.90485 16.1424C7.60343 17.1622 5.96246 17.7683 4.18012 17.7683C3.87303 17.7683 3.57055 17.7498 3.27273 17.7162C4.95658 18.7974 6.95564 19.4278 9.10418 19.4278C16.1026 19.4278 19.9281 13.6312 19.9281 8.60397L19.9153 8.11145C20.6628 7.57833 21.3094 6.90851 21.8182 6.14597Z" fill="white" />
+                        </mask>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/lexal-ai/" className="text-color4 hover:text-teal-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none">
+                        <path d="M16.2 0H1.8C0.81 0 0 0.81 0 1.8V16.2C0 17.19 0.81 18 1.8 18H16.2C17.19 18 18 17.19 18 16.2V1.8C18 0.81 17.19 0 16.2 0ZM5.4 15.3H2.7V7.2H5.4V15.3ZM4.05 5.67C3.15 5.67 2.43 4.95 2.43 4.05C2.43 3.15 3.15 2.43 4.05 2.43C4.95 2.43 5.67 3.15 5.67 4.05C5.67 4.95 4.95 5.67 4.05 5.67ZM15.3 15.3H12.6V10.53C12.6 9.81004 11.97 9.18 11.25 9.18C10.53 9.18 9.9 9.81004 9.9 10.53V15.3H7.2V7.2H9.9V8.28C10.35 7.56 11.34 7.02 12.15 7.02C13.86 7.02 15.3 8.46 15.3 10.17V15.3Z" fill="currentColor" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/lexal.ai/" className="text-color4 hover:text-teal-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M7.60063 2.18182H16.3991C19.3873 2.18182 21.8183 4.61281 21.8182 7.60074V16.3993C21.8182 19.3872 19.3873 21.8182 16.3991 21.8182H7.60063C4.6127 21.8182 2.18182 19.3873 2.18182 16.3993V7.60074C2.18182 4.61281 4.6127 2.18182 7.60063 2.18182ZM16.3993 20.0759C18.4266 20.0759 20.0761 18.4266 20.0761 16.3993H20.0759V7.60074C20.0759 5.57348 18.4265 3.92405 16.3991 3.92405H7.60063C5.57336 3.92405 3.92405 5.57348 3.92405 7.60074V16.3993C3.92405 18.4266 5.57336 20.0761 7.60063 20.0759H16.3993ZM6.85714 12.0001C6.85714 9.16424 9.16418 6.85714 12 6.85714C14.8358 6.85714 17.1429 9.16424 17.1429 12.0001C17.1429 14.8359 14.8358 17.1429 12 17.1429C9.16418 17.1429 6.85714 14.8359 6.85714 12.0001ZM8.62798 12C8.62798 13.8593 10.1407 15.3719 12 15.3719C13.8593 15.3719 15.372 13.8593 15.372 12C15.372 10.1406 13.8594 8.6279 12 8.6279C10.1406 8.6279 8.62798 10.1406 8.62798 12Z" fill="currentColor" />
+                        <mask id="mask0_3320_6487" maskUnits="userSpaceOnUse" x="2" y="2" width="20" height="20">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.60063 2.18182H16.3991C19.3873 2.18182 21.8183 4.61281 21.8182 7.60074V16.3993C21.8182 19.3872 19.3873 21.8182 16.3991 21.8182H7.60063C4.6127 21.8182 2.18182 19.3873 2.18182 16.3993V7.60074C2.18182 4.61281 4.6127 2.18182 7.60063 2.18182ZM16.3993 20.0759C18.4266 20.0759 20.0761 18.4266 20.0761 16.3993H20.0759V7.60074C20.0759 5.57348 18.4265 3.92405 16.3991 3.92405H7.60063C5.57336 3.92405 3.92405 5.57348 3.92405 7.60074V16.3993C3.92405 18.4266 5.57336 20.0761 7.60063 20.0759H16.3993ZM6.85714 12.0001C6.85714 9.16424 9.16418 6.85714 12 6.85714C14.8358 6.85714 17.1429 9.16424 17.1429 12.0001C17.1429 14.8359 14.8358 17.1429 12 17.1429C9.16418 17.1429 6.85714 14.8359 6.85714 12.0001ZM8.62798 12C8.62798 13.8593 10.1407 15.3719 12 15.3719C13.8593 15.3719 15.372 13.8593 15.372 12C15.372 10.1406 13.8594 8.6279 12 8.6279C10.1406 8.6279 8.62798 10.1406 8.62798 12Z" fill="white">
+                                                    </path>
+                                                </mask>
+                                                <g mask="url(#mask0_3320_6487)">
+
+
+                                                </g>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="flex items-center">
+                                    <p className="text-base font-normal leading-7 text-center text-color4">
+                                        2024 Delegant AI. All rights reserved.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </section>
+      {/* <div className='mx-auto mt-6 max-w-7xl px-6 lg:px-8 dark:bg-boxdark-2'>
         <footer
           aria-labelledby='footer-heading'
           className='relative border-t border-gray-900/10 dark:border-gray-200/10 py-24 sm:mt-32'
@@ -363,7 +458,7 @@ export default function LandingPage() {
             </div>
           </div>
         </footer>
-      </div>
+      </div> */}
     </div>
   );
 }
