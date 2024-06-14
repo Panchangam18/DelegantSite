@@ -95,7 +95,7 @@ test('Make test payment with Stripe', async () => {
 });
 
 test('User should be able to generate another schedule after payment', async () => {
-  await page.goto('/demo-app');
+  await page.goto('/dashboard');
 
   const generateScheduleButton = page.getByRole('button', { name: 'Generate Schedule' });
   await expect(generateScheduleButton).toBeVisible();

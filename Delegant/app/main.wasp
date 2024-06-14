@@ -56,7 +56,7 @@ app OpenSaaS {
       // },
     },
     onAuthFailedRedirectTo: "/login",
-    onAuthSucceededRedirectTo: "/demo-app",
+    onAuthSucceededRedirectTo: "/dashboard",
   },
 
   db: {
@@ -92,7 +92,6 @@ app OpenSaaS {
 entity User {=psl
   id                        Int             @id @default(autoincrement())
   createdAt                 DateTime        @default(now())
-
   email                     String?         @unique
   username                  String?         @unique
   lastActiveTimestamp       DateTime        @default(now())
@@ -105,11 +104,11 @@ entity User {=psl
   sendEmail                 Boolean         @default(false)
   datePaid                  DateTime?
   credits                   Int             @default(3)
-
   gptResponses              GptResponse[]
   contactFormMessages       ContactFormMessage[]
   tasks                     Task[]
   files                     File[]
+  authToken                 String?         @unique
 psl=}
 
 entity GptResponse {=psl
@@ -233,6 +232,21 @@ page EmailVerificationPage {
   component: import { EmailVerification } from "@src/client/auth/EmailVerification",
 }
 //#endregion
+
+route DashboardRoute { 
+  path: "/dashboard", 
+  to: Dashboard
+}
+
+route DashboardWildcardRoute { 
+  path: "/dashboard/*", 
+  to: Dashboard
+}
+
+page Dashboard {
+  component: import Dashboard from "@src/client/components/dashboard-v8/src/dashboardmain.tsx",
+  authRequired: true
+}
 
 route DemoAppRoute { path: "/demo-app", to: DemoAppPage }
 page DemoAppPage {

@@ -19,14 +19,15 @@ export function createRandomUser() {
     createdAt: faker.date.between({ from: new Date('2023-01-01'), to: new Date() }),
     lastActiveTimestamp: faker.date.recent(),
     isAdmin: false,
-    hasPaid: faker.helpers.arrayElement([true, false]),
     stripeId: `cus_${faker.string.uuid()}`,
+    hasPaid: faker.helpers.arrayElement([true, false]),
     sendEmail: false,
-    subscriptionStatus: faker.helpers.arrayElement(['active', 'canceled', 'past_due', 'deleted', null]),
+    subscriptionStatus: faker.helpers.arrayElement(['active', 'canceled', 'past_due', 'deleted']),
     datePaid: faker.date.recent(),
     credits: faker.number.int({ min: 0, max: 3 }),
     checkoutSessionId: null,
-    subscriptionTier: faker.helpers.arrayElement([TierIds.HOBBY, TierIds.PRO]),
+    subscriptionTier: faker.helpers.arrayElement([TierIds.HOBBY_MONTHLY, TierIds.HOBBY_ANNUAL, TierIds.PRO_MONTHLY,  TierIds.PRO_ANNUAL, TierIds.ENTERPRISE_MONTHLY,  TierIds.ENTERPRISE_ANNUAL]),
+    authToken: '', // Add the authToken property with a valid value
   };
   return user;
 }

@@ -6,7 +6,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { HiBars3 } from 'react-icons/hi2';
 import { BiLogIn } from 'react-icons/bi';
 import logo from '../static/logo.png';
-import openSaasBanner from '../static/open-saas-banner.png';
+import bannerdeleg from '../static/bannerdeleg.png';
 import { features, navigation, faqs, footerNavigation, testimonials } from './contentSections';
 import DropdownUser from '../components/DropdownUser';
 import { DOCS_URL } from '../../shared/constants';
@@ -131,7 +131,7 @@ export default function LandingPage() {
             aria-hidden='true'
           >
             <div
-              className='aspect-[1020/880] w-[55rem] flex-none sm:right-1/4 sm:translate-x-1/2 dark:hidden bg-gradient-to-tr from-amber-400 to-purple-300 opacity-40'
+              className='aspect-[1020/880] w-[55rem] flex-none sm:right-1/4 sm:translate-x-1/2 dark:hidden bg-gradient-to-tr from-teal-500 to-teal-500 opacity-40'
               style={{
                 clipPath: 'polygon(80% 20%, 90% 55%, 50% 100%, 70% 30%, 20% 50%, 50% 0)',
               }}
@@ -142,7 +142,7 @@ export default function LandingPage() {
             aria-hidden='true'
           >
             <div
-              className='relative aspect-[1020/880] sm:-left-3/4 sm:translate-x-1/4 dark:hidden bg-gradient-to-br from-amber-400 to-purple-300  opacity-50 w-[72.1875rem]'
+              className='relative aspect-[1020/880] sm:-left-3/4 sm:translate-x-1/4 dark:hidden bg-gradient-to-tr from-teal-500 to-teal-500  opacity-50 w-[72.1875rem]'
               style={{
                 clipPath: 'ellipse(80% 30% at 80% 50%)',
               }}
@@ -159,7 +159,7 @@ export default function LandingPage() {
                 </p>
                 <div className='mt-10 flex items-center justify-center gap-x-6'>
                   <a
-                    href={DOCS_URL}
+                    href='/dashboard'
                     className='rounded-md px-3.5 py-2.5 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-200 hover:ring-2 hover:ring-teal-300 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:text-white'
                   >
                     Get Started <span aria-hidden='true'>→</span>
@@ -169,11 +169,11 @@ export default function LandingPage() {
               <div className='mt-14 flow-root sm:mt-14 '>
                 <div className='-m-2 rounded-xl  lg:-m-4 lg:rounded-2xl lg:p-4'>
                   <img
-                    src={openSaasBanner}
+                    src={bannerdeleg}
                     alt='App screenshot'
                     width={2432}
                     height={1442}
-                    className='rounded-md shadow-2xl ring-1 ring-gray-900/10'
+                    className='rounded-md shadow-m'
                   />
                 </div>
               </div>
@@ -187,7 +187,7 @@ export default function LandingPage() {
                     <div className="gradient-02 z-0 max-w-2xl" />
                     <motion.div
                     variants={staggerContainer(0.1, 0.2)}
-                    initial="hidden"
+                    initial="show"
                     whileInView="show"
                     viewport={{ once: false, amount: 0.25 }}
                     className={`${styles.innerWidth} mx-auto ${styles.flexCenter} flex-col`}
@@ -200,13 +200,7 @@ export default function LandingPage() {
                         variants={fadeIn('up', 'tween', 0.2, 1)}
                         className="mt-[50px] font-normal sm:text-[32px] text-[20px] text-center text-secondary-white"
                     >
-                        At <span className="font-extrabold text-teal-500">Lexal</span> we provide you with the tools
-                        to automate all the tedious aspects of your business, so you can focus on providing your{' '}
-                        <span className="font-extrabold text-teal-500">
-                        core service
-                        </span>. We develop advanced AI tools that can do anything from running your social media 
-                        to tracking your numbers to tell you exactly how to increase your product sales. Scroll down 
-                        to see exactly how we can help your business thrive.
+                        At <span className="font-extrabold text-teal-500">Delegant</span> we revolutionize the way you manage your team’s schedule. Our AI-powered scheduling tool takes the hassle out of organizing shifts, projects, tasks, events, and even payroll. With Delegant, you can effortlessly handle every aspect of your team’s calendar, ensuring optimal <span className="font-extrabold text-teal-500">productivity</span> and <span className="font-extrabold text-teal-500">efficiency</span>. Our advanced algorithms intelligently assign tasks based on team members' roles and availability, allowing you to focus on growing your business.
                     </motion.p>
 
                     </motion.div>
@@ -416,7 +410,7 @@ export default function LandingPage() {
                                 </div>
                                 <div className="flex items-center">
                                     <p className="text-base font-normal leading-7 text-center text-color4">
-                                        2024 Delegant AI. All rights reserved.
+                                        2024 Delegant. All rights reserved.
                                     </p>
                                 </div>
                             </div>

@@ -179,10 +179,9 @@ import { TierIds, STRIPE_CUSTOMER_PORTAL_LINK } from '../../shared/constants';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-
 const CheckIcon = () => (
   <svg
-    className="flex-shrink-0 w-5 h-5 text-green-500"
+    className="flex-shrink-0 w-5 h-5 text-teal-500"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
@@ -219,7 +218,7 @@ const tiers = [
       'Access to all tools',
       'Limited Usage',
       'Minimal Setup',
-      'Consulation Calls: 3 months',
+      'Consultation Calls: 3 months',
       'Email support: Forever',
     ],
     description: 'Best for mid-scale businesses looking to scale up their operations',
@@ -233,10 +232,10 @@ const tiers = [
       'Access to all tools',
       'Unlimited Usage',
       'Ability to request tools and get personalized tool modifications',
-      'Consulation Calls: Forever',
+      'Consultation Calls: Forever',
       'Direct line of Communication to CEO',
     ],
-    description: 'Best for large scale uses and hyper-personalized modifications',
+    description: 'Best for large-scale uses and hyper-personalized modifications',
   },
 ];
 
@@ -248,20 +247,20 @@ const PricingSection = () => {
 
   async function handleBuyNowClick(tierId: string) {
     console.log('handleBuyNowClick called with tierId:', tierId);
-  
+
     if (!user) {
       history.push('/login');
       return;
     }
-  
+
     try {
       setIsStripePaymentLoading(tierId);
       const pricingPlanId = isAnnual ? `${tierId}_annual` : `${tierId}_monthly`;
       console.log('Calling stripePayment with pricingPlanId:', pricingPlanId);
       const stripeResults = await stripePayment(pricingPlanId);
-  
+
       console.log('Stripe results:', stripeResults);
-  
+
       if (stripeResults?.sessionUrl) {
         window.open(stripeResults.sessionUrl, '_self');
       }
@@ -271,23 +270,23 @@ const PricingSection = () => {
       setIsStripePaymentLoading(false);
     }
   }
-  
+
   return (
-    <section className="bg-gray-900">
+    <section className="bg-white">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white">
-            Pricing designed for <span className="font-extrabold text-color3">your</span> business
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
+            Pricing designed for <span className="font-extrabold text-[#14b8a6]">your</span> business
           </h2>
-          <p className="mb-5 font-light text-gray-400 sm:text-xl">
-            Here at Lexal, we focus on making sure that you can get the <span className="font-extrabold text-color3">transformational benefits</span> of our tools without breaking the bank. So we offer a range of pricing plans to suit your needs.
+          <p className="mb-5 font-light text-gray-700 sm:text-xl">
+            Here at Delegant, we focus on making sure that you can get the <span className="font-extrabold text-[#14b8a6]">transformational benefits</span> of automating your team's schedule without breaking the bank. So we offer a range of pricing plans to suit your needs.
           </p>
         </div>
         <div className="flex justify-center mb-8">
-          <div className="relative inline-flex bg-gray-700 rounded-lg">
+          <div className="relative inline-flex bg-gray-200 rounded-lg">
             <button
               className={`px-6 py-3 rounded-l-lg relative z-10 transition-colors duration-300 ${
-                isAnnual ? 'text-gray-400' : 'text-white'
+                isAnnual ? 'text-gray-500' : 'text-gray-900'
               }`}
               onClick={() => setIsAnnual(false)}
             >
@@ -295,14 +294,14 @@ const PricingSection = () => {
             </button>
             <button
               className={`px-6 py-3 rounded-r-lg relative z-10 transition-colors duration-300 ${
-                isAnnual ? 'text-white' : 'text-gray-400'
+                isAnnual ? 'text-gray-900' : 'text-gray-500'
               }`}
               onClick={() => setIsAnnual(true)}
             >
               Annual
             </button>
             <span
-              className={`absolute inset-y-0 left-0 w-1/2 bg-gray-800 rounded-lg transition-all duration-300 ease-in-out transform ${
+              className={`absolute inset-y-0 left-0 w-1/2 bg-[#14b8a6] rounded-lg transition-all duration-300 ease-in-out transform ${
                 isAnnual ? 'translate-x-full' : ''
               }`}
             ></span>
@@ -312,15 +311,15 @@ const PricingSection = () => {
           {tiers.map((tier) => (
             <div
               key={tier.id}
-              className="flex flex-col p-6 mx-auto max-w-lg text-center text-white bg-gray-800 rounded-lg border border-gray-600 shadow xl:p-8"
+              className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-gray-100 rounded-lg border border-gray-200 shadow xl:p-8"
             >
               <h3 className="mb-4 text-2xl font-semibold">{tier.title}</h3>
-              <p className="font-light text-gray-400 sm:text-lg">{tier.description}</p>
+              <p className="font-light text-gray-600 sm:text-lg">{tier.description}</p>
               <div className="flex justify-center items-baseline my-8">
                 <span className="mr-2 text-5xl font-extrabold">
                   {isAnnual ? tier.annualPrice : tier.monthlyPrice}
                 </span>
-                <span className="text-gray-400">{isAnnual ? '/year' : '/month'}</span>
+                <span className="text-gray-500">{isAnnual ? '/year' : '/month'}</span>
               </div>
               <ul role="list" className="mb-8 space-y-4 text-left">
                 {tier.features.map((feature, index) => (
@@ -333,17 +332,16 @@ const PricingSection = () => {
               {user && user.hasPaid ? (
                 <a
                   href={STRIPE_CUSTOMER_PORTAL_LINK}
-                  className="text-white bg-transparent border border-color2 hover:bg-color2 focus:ring-4 focus:ring-color2 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out"
+                  className="text-[#14b8a6] border border-[#14b8a6] hover:bg-[#14b8a6] hover:text-white focus:ring-4 focus:ring-[#14b8a6] font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out"
                 >
                   Manage Subscription
                 </a>
               ) : (
                 <button
                   onClick={() => handleBuyNowClick(tier.id)}
-                  className="text-white bg-transparent border border-color2 hover:bg-color2 focus:ring-4 focus:ring-color2 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out"
+                  className="text-[#14b8a6] border border-[#14b8a6] hover:bg-[#14b8a6] hover:text-white focus:ring-4 focus:ring-[#14b8a6] font-medium rounded-lg text-sm px-5 py-2.5 text-center transition duration-300 ease-in-out"
                 >
                   {tier.id === 'enterprise' ? 'Get Started Now' : 'Get Started Now'}
-                  {/* Have to change the above to Contact Us once I set up the contact page */}
                 </button>
               )}
             </div>

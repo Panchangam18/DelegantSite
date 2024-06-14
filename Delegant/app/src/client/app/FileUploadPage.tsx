@@ -68,7 +68,7 @@ export default function FileUploadPage() {
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className='mx-auto max-w-4xl text-center'>
           <h2 className='mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white'>
-            <span className='text-yellow-500'>AWS</span> File Upload
+            <span className='text-teal-500'>AWS</span> File Upload
           </h2>
         </div>
         <p className='mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600 dark:text-white'>
@@ -86,7 +86,7 @@ export default function FileUploadPage() {
               />
               <button
                 type='submit'
-                className='min-w-[7rem] font-medium text-gray-800/90 bg-yellow-50 shadow-md ring-1 ring-inset ring-slate-200 py-2 px-4 rounded-md hover:bg-yellow-100 duration-200 ease-in-out focus:outline-none focus:shadow-none hover:shadow-none'
+                className='min-w-[7rem] font-medium text-gray-800/90 bg-teal-50 shadow-md ring-1 ring-inset ring-slate-200 py-2 px-4 rounded-md hover:bg-teal-100 duration-200 ease-in-out focus:outline-none focus:shadow-none hover:shadow-none'
               >
                 Upload
               </button>

@@ -10,27 +10,27 @@ export const navigation = [
 ];
 export const features = [
   {
-    name: 'Cool Feature #1',
-    description: 'Describe your cool feature here.',
-    icon: '🤝',
+    name: 'Scheduling',
+    description: "See and optimize your team's schedule",
+    icon: '📆',
     href: DOCS_URL,
   },
   {
-    name: 'Cool Feature #2',
-    description: 'Describe your cool feature here.',
-    icon: '🔐',
+    name: 'Progress',
+    description: 'Track live progress towards your goals',
+    icon: '📈',
     href: DOCS_URL,
   },
   {
-    name: 'Cool Feature #3',
-    description: 'Describe your cool feature here.',
-    icon: '🥞',
-    href: DOCS_URL,
-  },
-  {
-    name: 'Cool Feature #4',
-    description: 'Describe your cool feature here.',
+    name: 'Payroll',
+    description: 'Automate employee payroll based on shifts',
     icon: '💸',
+    href: DOCS_URL,
+  },
+  {
+    name: 'Organization',
+    description: 'Everything you need organized in one place',
+    icon: '🗂️',
     href: DOCS_URL,
   },
 ];

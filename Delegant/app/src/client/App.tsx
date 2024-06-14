@@ -21,6 +21,10 @@ export default function App({ children }: { children: ReactNode }) {
     return location.pathname.startsWith('/admin');
   }, [location]);
 
+  const isUserDashboard = useMemo(() => {
+    return location.pathname.startsWith('/dashboard');
+  }, [location]);
+
   useEffect(() => {
     if (user) {
       const lastSeenAt = new Date(user.lastActiveTimestamp);
@@ -45,6 +49,8 @@ export default function App({ children }: { children: ReactNode }) {
     <>
       <div className='min-h-screen dark:text-white dark:bg-boxdark-2'>
         {isAdminDashboard ? (
+          <>{children}</>
+        ) : isUserDashboard ? (
           <>{children}</>
         ) : (
           <>
