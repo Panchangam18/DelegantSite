@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Calendar from '@toast-ui/react-calendar';
 import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 import { useAuth } from 'wasp/client/auth'; // Assuming you're using Wasp for auth
-
-// Create an Axios instance
-const axiosInstance = axios.create({
-  baseURL: 'https://lexal-api.fly.dev/api/delegant', // Adjust this URL based on your backend setup
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
 
 interface CalendarEvent {
   id: string;
@@ -24,59 +15,88 @@ interface CalendarEvent {
   location?: string;
 }
 
-interface TeamMemberCalendarEvent {
-  summary: string;
-  start: { dateTime: string };
-  end: { dateTime: string };
-  description?: string;
-  location?: string;
-}
-
-interface TeamMemberCalendar {
-  team_member: string;
-  events: TeamMemberCalendarEvent[];
-}
+const sampleEvents: CalendarEvent[] = [
+  {
+    id: '1',
+    calendarId: '1',
+    title: 'Team Meeting',
+    category: 'time',
+    start: '2024-07-11T10:00:00',
+    end: '2024-07-11T11:00:00',
+    location: 'Meeting Room 1'
+  },
+  {
+    id: '2',
+    calendarId: '1',
+    title: 'Client Call',
+    category: 'time',
+    start: '2024-07-12T14:00:00',
+    end: '2024-07-12T15:00:00',
+    location: 'Zoom'
+  },
+  {
+    id: '3',
+    calendarId: '1',
+    title: 'Project Deadline',
+    category: 'time',
+    start: '2024-07-15T00:00:00',
+    end: '2024-07-15T23:59:59',
+    isAllDay: true
+  }
+];
 
 const DelegantDash: React.FC = () => {
   const { data: user } = useAuth();
   const authToken = user?.authToken;
 
-  const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [events, setEvents] = useState<CalendarEvent[]>(sampleEvents);
+  const [view, setView] = useState<'month' | 'week' | 'day'>('month');
 
-  // Fetch calendars and flatten events
-  useEffect(() => {
-    const fetchCalendars = async () => {
-      try {
-        const response = await axiosInstance.get('/team-members-calendars/', {
-          headers: { Authorization: `Token ${authToken}` },
-        });
-        const calendarEvents = response.data.calendars.flatMap((member: TeamMemberCalendar) =>
-          member.events.map(event => ({
-            // id: event.id, // Ensure the event has a unique ID
-            calendarId: '1', // Customize calendar ID as needed
-            title: event.summary,
-            category: 'time',
-            start: event.start.dateTime,
-            end: event.end.dateTime,
-            location: event.location,
-          }))
-        );
-        setEvents(calendarEvents);
-      } catch (error) {
-        console.error('Error fetching calendar events', error);
-      }
-    };
+  const handleCalendarChange = () => {
+    // This function can be used to handle changes in the calendar view if needed
+  };
 
-    fetchCalendars();
-  }, [authToken]);
+  const handleViewChange = (newView: 'month' | 'week' | 'day') => {
+    setView(newView);
+    const calendarInstance = calendarRef.current?.getInstance();
+    if (calendarInstance) {
+      calendarInstance.changeView(newView);
+      handleCalendarChange();
+    }
+  };
+
+  const handlePrev = () => {
+    const calendarInstance = calendarRef.current?.getInstance();
+    if (calendarInstance) {
+      calendarInstance.prev();
+      handleCalendarChange();
+    }
+  };
+
+  const handleNext = () => {
+    const calendarInstance = calendarRef.current?.getInstance();
+    if (calendarInstance) {
+      calendarInstance.next();
+      handleCalendarChange();
+    }
+  };
+
+  const calendarRef = React.useRef<any>(null);
 
   return (
     <div>
-      <h1>Admin Dashboard</h1>
+      <h1>Calendar Dashboard</h1>
       <div>
-        <h2>Team Members' Calendars</h2>
+        <div className="view-buttons">
+          <button className="nav-button" onClick={handlePrev}>Previous</button>
+          <button className="nav-button" onClick={handleNext}>Next</button>
+          <button className="view-button" onClick={() => handleViewChange('month')}>Month</button>
+          <button className="view-button" onClick={() => handleViewChange('week')}>Week</button>
+          <button className="view-button" onClick={() => handleViewChange('day')}>Day</button>
+        </div>
         <Calendar
-          height="900px"
+          ref={calendarRef}
+          height="700px"
           useDetailPopup={true}
           useFormPopup={true}
           calendars={[
@@ -88,10 +108,38 @@ const DelegantDash: React.FC = () => {
             },
           ]}
           events={events}
+          view={view}
+          onBeforeRenderEvent={handleCalendarChange}
         />
       </div>
+      <style>
+        {`
+          .view-buttons {
+            margin-bottom: 20px;
+          }
+          .view-button, .nav-button {
+            background-color: #14B8A6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+          }
+          .view-button:hover, .nav-button:hover {
+            background-color: #007267;
+          }
+          .toastui-calendar-milestone,
+          .toastui-calendar-task,
+          .toastui-calendar-allday,
+          .toastui-calendar-panel-resizer {
+            display: none !important;
+          }
+        `}
+      </style>
     </div>
   );
 };
 
-export default Calendar;
+export default DelegantDash;
